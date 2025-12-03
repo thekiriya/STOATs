@@ -1,0 +1,2792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STOATs</title>
+  <style>
+  :root {
+    /* COLORS */
+    --color-primary: #2f5a2c;
+    --color-on-primary: #ffffff;
+
+    --color-secondary: #a25e3f;
+    --color-on-secondary: #ffffff;
+
+    --color-accent: #6b9736;
+    --color-on-accent: #0f1410;
+
+    --color-neutral: #b9a895;
+
+    --color-surface: #f7f3ee;
+    --color-on-surface: #161310;
+    --color-on-surface-variant: #564b42;
+
+    --color-border: #cfc6ba;
+    --color-outline: #a69a8d;
+
+    /* “color-mix” ones from TeleportHQ
+       Approximated since Teleport uses CSS color-mix() */
+    --color-overlay: rgba(0, 0, 0, 0.25);
+    --color-backplate: rgba(255, 255, 255, 0.6);
+    --color-scrim: rgba(0, 0, 0, 0.4);
+
+    /* SPACING */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 0.75rem;
+    --spacing-lg: 1rem;
+    --spacing-xl: 1.5rem;
+    --spacing-2xl: 2rem;
+    --spacing-3xl: 3rem;
+    --spacing-4xl: 4rem;
+
+    /* TYPOGRAPHY */
+    --font-family-heading: "Playfair Display", serif;
+    --font-family-body: "Merriweather", serif;
+
+    --font-size-base: 1rem;
+    --font-size-xs: clamp(0.68rem, 0.5vw, 0.8rem);
+    --font-size-sm: clamp(0.85rem, 0.6vw, 1rem);
+    --font-size-lg: clamp(1.125rem, 1vw, 1.4rem);
+    --font-size-xl: clamp(1.35rem, 1.2vw, 1.6rem);
+    --font-size-2xl: clamp(1.75rem, 2vw, 2.2rem);
+    --font-size-3xl: clamp(2.5rem, 3vw, 3rem);
+    --font-size-4xl: clamp(4rem, 4vw, 4.5rem);
+
+    --font-weight-heading: 600;
+    --font-weight-body: 400;
+    --font-weight-medium: 500;
+
+    --line-height-heading: 1.28;
+    --line-height-body: 1.6;
+
+    --letter-spacing-heading: 0.02em;
+    --letter-spacing-body: 0.01em;
+
+    --text-transform-heading: none;
+    --font-style-heading: normal;
+    --font-style-subtle: italic;
+
+    /* RADII */
+    --border-radius-none: 0px;
+    --border-radius-sm: 12px;
+    --border-radius-md: 20px;
+    --border-radius-lg: 32px;
+    --border-radius-xl: 48px;
+    --border-radius-full: 9999px;
+
+    /* SHADOWS */
+    --shadow-level-1: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-level-2: 0 8px 24px rgba(0, 0, 0, 0.12);
+    --shadow-level-3: 0 16px 40px rgba(0, 0, 0, 0.15);
+
+    /* LAYOUT */
+    --content-max-width: 74rem;
+    --divider-value: 0px;
+  }
+
+  /* Body defaults */
+  body {
+    margin: 0;
+    font-family: var(--font-family-body);
+    background: var(--color-surface);
+    color: var(--color-on-surface);
+    line-height: var(--line-height-body);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+</style>
+
+  </style>
+</head>
+<body>
+
+<nav class="navigation-wrapper">
+  <div class="navigation-container">
+    <a href="/" class="navigation-logo" aria-label="STOATs Home">
+      <svg class="navigation-logo-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+          <path d="m16.24 7.76l-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/>
+          <circle cx="12" cy="12" r="10"/>
+        </g>
+      </svg>
+      <span class="section-title">STOATs</span>
+    </a>
+
+    <div class="navigation-links">
+      <a href="/" class="navigation-link">Discover</a>
+      <a href="/events-activities" class="navigation-link">Events & Activities</a>
+      <a href="/my-profile" class="navigation-link">My Profile</a>
+    </div>
+
+    <button class="navigation-toggle" aria-label="Toggle navigation menu" aria-expanded="false" id="navToggle">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5h16M4 12h16M4 19h16"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<div class="navigation-mobile-overlay" id="navOverlay">
+  <div class="navigation-mobile-header">
+    <a href="/" class="navigation-mobile-logo" aria-label="STOATs Home">
+      <svg class="navigation-logo-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+          <path d="m16.24 7.76l-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/>
+          <circle cx="12" cy="12" r="10"/>
+        </g>
+      </svg>
+      <span class="section-title">STOATs</span>
+    </a>
+    <button class="navigation-close" aria-label="Close navigation menu" id="navClose">
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24">
+        <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 6L6 18M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+
+  <div class="navigation-mobile-content">
+    <a href="/" class="navigation-mobile-link">
+      <svg class="navigation-mobile-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+          <path d="m16.24 7.76l-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/>
+          <circle cx="12" cy="12" r="10"/>
+        </g>
+      </svg>
+      <span>Discover</span>
+    </a>
+    <a href="/events-activities" class="navigation-mobile-link">
+      <svg class="navigation-mobile-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+          <path d="M8 2v4m8-4v4"/>
+          <rect width="18" height="18" x="3" y="4" rx="2"/>
+          <path d="M3 10h18"/>
+        </g>
+      </svg>
+      <span>Events & Activities</span>
+    </a>
+    <a href="/my-profile" class="navigation-mobile-link">
+      <svg class="navigation-mobile-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </g>
+      </svg>
+      <span>My Profile</span>
+    </a>
+  </div>
+</div>
+<style>
+.navigation-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: var(--spacing-md) var(--spacing-lg);
+  pointer-events: none;
+}
+
+.navigation-container {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background: var(--color-scrim);
+  backdrop-filter: blur(24px);
+  border-radius: var(--border-radius-xl);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  pointer-events: auto;
+}
+
+.navigation-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  text-decoration: none;
+  color: var(--color-surface);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.navigation-logo:hover {
+  transform: translateY(-2px);
+  opacity: 0.85;
+}
+
+.navigation-logo-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.navigation-logo .section-title {
+  white-space: nowrap;
+  color: var(--color-surface);
+}
+
+.navigation-links {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xl);
+}
+
+.navigation-link {
+  text-decoration: none;
+  color: var(--color-surface);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  position: relative;
+  white-space: nowrap;
+  transition: opacity 0.3s ease;
+}
+
+.navigation-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-surface);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.navigation-link:hover {
+  opacity: 0.85;
+}
+
+.navigation-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.navigation-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-surface);
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  transition: transform 0.3s ease;
+}
+
+.navigation-toggle:hover {
+  transform: rotate(90deg);
+}
+
+.navigation-mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--color-surface);
+  z-index: 1100;
+  min-height: 100vh;
+  overflow-y: auto;
+  padding-bottom: var(--spacing-3xl);
+}
+
+.navigation-mobile-header {
+  position: sticky;
+  top: 0;
+  z-index: 1110;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-lg);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navigation-mobile-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  text-decoration: none;
+  color: var(--color-on-surface);
+}
+
+.navigation-mobile-logo .section-title {
+  color: var(--color-on-surface);
+}
+
+.navigation-close {
+  background: none;
+  border: none;
+  color: var(--color-on-surface);
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.navigation-close:hover {
+  transform: rotate(90deg);
+}
+
+.navigation-mobile-content {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-2xl) var(--spacing-lg);
+  gap: var(--spacing-sm);
+}
+
+.navigation-mobile-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-lg);
+  text-decoration: none;
+  color: var(--color-on-surface);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--border-radius-lg);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideIn 0.4s ease forwards;
+}
+
+.navigation-mobile-link:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.navigation-mobile-link:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.navigation-mobile-link:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.navigation-mobile-link:hover {
+  background-color: var(--color-surface-elevated);
+  transform: translateX(8px);
+}
+
+.navigation-mobile-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 991px) {
+  .navigation-wrapper {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .navigation-container {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .navigation-links {
+    gap: var(--spacing-lg);
+  }
+
+  .navigation-link {
+    font-size: var(--font-size-sm);
+  }
+}
+
+@media (max-width: 767px) {
+  .navigation-links {
+    display: none;
+  }
+
+  .navigation-toggle {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navigation-logo,
+  .navigation-link,
+  .navigation-toggle,
+  .navigation-close,
+  .navigation-mobile-link {
+    transition: none;
+    animation: none;
+  }
+
+  .navigation-link::after {
+    transition: none;
+  }
+
+  .navigation-mobile-link {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+</style>
+<script defer data-name="navigation-toggle">
+const navToggle = document.getElementById('navToggle');
+const navClose = document.getElementById('navClose');
+const navOverlay = document.getElementById('navOverlay');
+
+function openMobileNav() {
+  navOverlay.style.display = 'block';
+  navToggle.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMobileNav() {
+  navOverlay.style.display = 'none';
+  navToggle.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+}
+
+navToggle.addEventListener('click', openMobileNav);
+navClose.addEventListener('click', closeMobileNav);
+
+navOverlay.querySelectorAll('.navigation-mobile-link').forEach(link => {
+  link.addEventListener('click', closeMobileNav);
+});
+</script><section class="hero">
+  <video class="hero-video" autoplay muted loop playsinline>
+    <source src="https://videos.pexels.com/video-files/35002648/14828791_640_360_30fps.mp4" type="video/mp4" />
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-text-container">
+      <h1 class="hero-title">Discover Rexburg Adventures</h1>
+      <p class="hero-subtitle">Find activities, earn points, level up your avatar</p>
+    </div>
+    <div class="hero-search-wrapper">
+      <div class="hero-search-bar">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m21 21l-4.34-4.34"/><circle cx="11" cy="11" r="8"/></g></svg>
+        <input type="search" placeholder="Search events and activities..." />
+      </div>
+      <div class="hero-categories">
+        <button class="hero-category-chip">Outdoors</button>
+        <button class="hero-category-chip">Arts</button>
+        <button class="hero-category-chip">Food</button>
+        <button class="hero-category-chip">Music</button>
+        <button class="hero-category-chip">Sports</button>
+        <button class="hero-category-chip">Community</button>
+      </div>
+    </div>
+    <div class="hero-cta-card">
+      <div class="hero-cta-content">
+        <div class="hero-cta-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.12 2.12 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.12 2.12 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.12 2.12 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.12 2.12 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.12 2.12 0 0 0 1.597-1.16z"/></svg>
+        </div>
+        <div class="hero-cta-text">
+          <span class="hero-cta-label">RSVP & Earn</span>
+          <span class="hero-cta-points">+50 Points</span>
+        </div>
+      </div>
+      <button class="btn btn-primary">Get Started</button>
+    </div>
+  </div>
+</section>
+
+<section class="filters">
+  <div class="filters-container">
+    <h2 class="section-title">Refine Your Search</h2>
+    <div class="filters-grid">
+      <div class="filters-card">
+        <div class="filters-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 5h20M6 12h12m-9 7h6"/></svg>
+        </div>
+        <h3 class="filters-card-title">Category</h3>
+        <div class="filters-card-controls">
+          <label class="filters-checkbox-wrapper">
+            <input type="checkbox" />
+            <span>Outdoors</span>
+          </label>
+          <label class="filters-checkbox-wrapper">
+            <input type="checkbox" />
+            <span>Arts</span>
+          </label>
+          <label class="filters-checkbox-wrapper">
+            <input type="checkbox" />
+            <span>Food</span>
+          </label>
+          <label class="filters-checkbox-wrapper">
+            <input type="checkbox" />
+            <span>Music</span>
+          </label>
+        </div>
+      </div>
+      <div class="filters-card">
+        <div class="filters-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M8 2v4m8-4v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></g></svg>
+        </div>
+        <h3 class="filters-card-title">Date Range</h3>
+        <div class="filters-card-controls">
+          <input type="date" class="filters-date-input" />
+          <span class="filters-date-separator">to</span>
+          <input type="date" class="filters-date-input" />
+        </div>
+      </div>
+      <div class="filters-card">
+        <div class="filters-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M17.97 9.304A8 8 0 0 0 2 10c0 4.69 4.887 9.562 7.022 11.468m12.356-4.842a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/><circle cx="10" cy="10" r="3"/></g></svg>
+        </div>
+        <h3 class="filters-card-title">Distance</h3>
+        <div class="filters-card-controls">
+          <label class="filters-range-label">
+            <input type="range" min="1" max="50" value="25" class="filters-range-input" />
+            <span class="filters-range-value">25 miles from Rexburg</span>
+          </label>
+        </div>
+      </div>
+      <div class="filters-card">
+        <div class="filters-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g></svg>
+        </div>
+        <h3 class="filters-card-title">Difficulty & Age</h3>
+        <div class="filters-card-controls">
+          <select class="filters-select">
+            <option>All Difficulty Levels</option>
+            <option>Easy</option>
+            <option>Moderate</option>
+            <option>Challenging</option>
+          </select>
+          <select class="filters-select">
+            <option>All Ages</option>
+            <option>Family Friendly</option>
+            <option>18+</option>
+            <option>21+</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="events">
+  <div class="events-container">
+    <div class="events-header">
+      <h2 class="section-title">Upcoming Events</h2>
+      <div class="events-sort">
+        <span class="events-sort-label">Sort by:</span>
+        <select class="events-sort-select">
+          <option>Date</option>
+          <option>Category</option>
+          <option>Points</option>
+          <option>Distance</option>
+        </select>
+      </div>
+    </div>
+    <div class="events-bento">
+      <article class="events-card events-card-featured">
+        <div class="events-card-image">
+          <img src="https://images.pexels.com/photos/34993297/pexels-photo-34993297.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Hikers traverse a picturesque autumn landscape" />
+          <button class="events-card-save">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676a.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg>
+          </button>
+          <div class="events-card-badge">+75 pts</div>
+        </div>
+        <div class="events-card-content">
+          <div class="events-card-category">Outdoors</div>
+          <h3 class="events-card-title">Grand Teton Sunrise Hike</h3>
+          <p class="events-card-description">Experience the breathtaking beauty of Grand Teton National Park at sunrise with a guided trail hike through pristine wilderness.</p>
+          <div class="events-card-meta">
+            <div class="events-card-meta-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></g></svg>
+              <span>Sat, Mar 15, 6:00 AM</span>
+            </div>
+            <div class="events-card-meta-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M17.97 9.304A8 8 0 0 0 2 10c0 4.69 4.887 9.562 7.022 11.468m12.356-4.842a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/><circle cx="10" cy="10" r="3"/></g></svg>
+              <span>38 miles</span>
+            </div>
+          </div>
+          <button class="btn btn-primary events-card-rsvp">RSVP Now</button>
+        </div>
+      </article>
+      <article class="events-card">
+        <div class="events-card-image">
+          <img src="https://images.pexels.com/photos/2693208/pexels-photo-2693208.png?auto=compress&cs=tinysrgb&h=650&w=940" alt="Dynamic abstract artwork" />
+          <button class="events-card-save">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676a.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg>
+          </button>
+          <div class="events-card-badge">+50 pts</div>
+        </div>
+        <div class="events-card-content">
+          <div class="events-card-category">Arts</div>
+          <h3 class="events-card-title">Abstract Painting Workshop</h3>
+          <div class="events-card-meta">
+            <div class="events-card-meta-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></g></svg>
+              <span>Thu, Mar 13, 7:00 PM</span>
+            </div>
+          </div>
+          <button class="btn btn-secondary events-card-rsvp">RSVP Now</button>
+        </div>
+      </article>
+      <article class="events-card">
+        <div class="events-card-image">
+          <img src="https://images.pexels.com/photos/34989203/pexels-photo-34989203.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Aesthetic food presentation" />
+          <button class="events-card-save">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676a.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg>
+          </button>
+          <div class="events-card-badge">+60 pts</div>
+        </div>
+        <div class="events-card-content">
+          <div class="events-card-category">Food</div>
+          <h3 class="events-card-title">Farm-to-Table Dinner</h3>
+          <div class="events-card-meta">
+            <div class="events-card-meta-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></g></svg>
+              <span>Fri, Mar 14, 6:30 PM</span>
+            </div>
+          </div>
+          <button class="btn btn-secondary events-card-rsvp">RSVP Now</button>
+        </div>
+      </article>
+      <article class="events-card">
+        <div class="events-card-image">
+          <img src="https://images.pexels.com/photos/15286/pexels-photo.jpg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Forest walking path" />
+          <button class="events-card-save">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676a.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg>
+          </button>
+          <div class="events-card-badge">+40 pts</div>
+        </div>
+        <div class="events-card-content">
+          <div class="events-card-category">Outdoors</div>
+          <h3 class="events-card-title">Nature Photography Walk</h3>
+          <div class="events-card-meta">
+            <div class="events-card-meta-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></g></svg>
+              <span>Sun, Mar 16, 3:00 PM</span>
+            </div>
+          </div>
+          <button class="btn btn-secondary events-card-rsvp">RSVP Now</button>
+        </div>
+      </article>
+      <article class="events-card">
+        <div class="events-card-image">
+          <img src="https://images.pexels.com/photos/6607759/pexels-photo-6607759.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Art studio painting" />
+          <button class="events-card-save">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676a.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></svg>
+          </button>
+          <div class="events-card-badge">+55 pts</div>
+        </div>
+        <div class="events-card-content">
+          <div class="events-card-category">Arts</div>
+          <h3 class="events-card-title">Canvas & Coffee Evening</h3>
+          <div class="events-card-meta">
+            <div class="events-card-meta-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></g></svg>
+              <span>Wed, Mar 19, 8:00 PM</span>
+            </div>
+          </div>
+          <button class="btn btn-secondary events-card-rsvp">RSVP Now</button>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="showcase">
+  <div class="showcase-container">
+    <h2 class="section-title">Explore by Category</h2>
+    <p class="section-subtitle">Discover curated activities tailored to your interests</p>
+    <div class="showcase-layers">
+      <article class="showcase-card showcase-card-outdoors">
+        <div class="showcase-card-image">
+          <img src="https://images.pexels.com/photos/34993465/pexels-photo-34993465.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Snow capped mountains" />
+        </div>
+        <div class="showcase-card-content">
+          <div class="showcase-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M17.97 9.304A8 8 0 0 0 2 10c0 4.69 4.887 9.562 7.022 11.468m12.356-4.842a1 1 0 0 0-3.004-3.004l-4.01 4.012a2 2 0 0 0-.506.854l-.837 2.87a.5.5 0 0 0 .62.62l2.87-.837a2 2 0 0 0 .854-.506z"/><circle cx="10" cy="10" r="3"/></g></svg>
+          </div>
+          <div class="showcase-card-text">
+            <h3 class="showcase-card-title">Outdoors</h3>
+            <p class="showcase-card-description">Hiking trails, camping adventures, mountain biking, and wilderness exploration around Rexburg's stunning landscapes.</p>
+            <span class="showcase-card-count">24 activities</span>
+          </div>
+          <a href="#" class="showcase-card-link">View more in Outdoors</a>
+        </div>
+      </article>
+      <article class="showcase-card showcase-card-arts">
+        <div class="showcase-card-image">
+          <img src="https://images.pexels.com/photos/1451567/pexels-photo-1451567.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Abstract painting" />
+        </div>
+        <div class="showcase-card-content">
+          <div class="showcase-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></g></svg>
+          </div>
+          <div class="showcase-card-text">
+            <h3 class="showcase-card-title">Arts</h3>
+            <p class="showcase-card-description">Creative workshops, gallery exhibits, pottery classes, painting sessions, and performances across Rexburg's vibrant art scene.</p>
+            <span class="showcase-card-count">18 activities</span>
+          </div>
+          <a href="#" class="showcase-card-link">View more in Arts</a>
+        </div>
+      </article>
+      <article class="showcase-card showcase-card-food">
+        <div class="showcase-card-image">
+          <img src="https://images.pexels.com/photos/1850595/pexels-photo-1850595.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Restaurant dining" />
+        </div>
+        <div class="showcase-card-content">
+          <div class="showcase-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M8 2v4m8-4v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></g></svg>
+          </div>
+          <div class="showcase-card-text">
+            <h3 class="showcase-card-title">Food</h3>
+            <p class="showcase-card-description">Tasting events, cooking classes, farmer's markets, food festivals, and culinary tours celebrating local flavors.</p>
+            <span class="showcase-card-count">32 activities</span>
+          </div>
+          <a href="#" class="showcase-card-link">View more in Food</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="gallery">
+  <div class="gallery-wrapper">
+    <div class="gallery-content">
+      <div class="gallery-text">
+        <h2 class="section-title">Explore Locations</h2>
+        <p class="section-subtitle">Interactive map showing all event venues and activity spots across Rexburg</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item gallery-item-map">
+          <div class="gallery-map-placeholder">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0zm.894.211v15M9 3.236v15"/></svg>
+            <span>Interactive Map</span>
+            <div class="gallery-map-pin">12 Events Nearby</div>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/34958206/pexels-photo-34958206.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Red cabin near lake" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-label">Lakeside Retreat</span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/2070025/pexels-photo-2070025.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Bamboo pathway" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-label">Nature Trail</span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/3184192/pexels-photo-3184192.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Group dining" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-label">Community Kitchen</span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/2130475/pexels-photo-2130475.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Blue abstract art" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-label">Gallery Space</span>
+          </div>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.pexels.com/photos/34962702/pexels-photo-34962702.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Forest path" />
+          <div class="gallery-item-overlay">
+            <span class="gallery-item-label">Forest Loop</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="timeline">
+  <div class="timeline-container">
+    <h2 class="section-title">Upcoming Event Schedule</h2>
+    <p class="section-subtitle">Plan ahead with key dates and RSVP deadlines</p>
+    <div class="timeline-track">
+      <article class="timeline-item">
+        <div class="timeline-marker">
+          <div class="timeline-dot"></div>
+          <div class="timeline-line"></div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-date">March 10, 2025</div>
+          <h3 class="timeline-title">Spring Festival Registration Opens</h3>
+          <p class="timeline-description">RSVP window opens for the annual Spring Festival featuring live music, food trucks, and outdoor activities. Limited spots available.</p>
+          <div class="timeline-meta">
+            <span class="timeline-badge">Registration</span>
+            <span class="timeline-points">+100 pts for early RSVP</span>
+          </div>
+        </div>
+      </article>
+      <article class="timeline-item">
+        <div class="timeline-marker">
+          <div class="timeline-dot"></div>
+          <div class="timeline-line"></div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-date">March 13, 2025</div>
+          <h3 class="timeline-title">Abstract Painting Workshop</h3>
+          <p class="timeline-description">Learn modern abstract techniques with local artist Maya Chen. All materials provided, no experience necessary.</p>
+          <div class="timeline-meta">
+            <span class="timeline-badge">Arts</span>
+            <span class="timeline-points">+50 pts</span>
+          </div>
+        </div>
+      </article>
+      <article class="timeline-item">
+        <div class="timeline-marker">
+          <div class="timeline-dot"></div>
+          <div class="timeline-line"></div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-date">March 14, 2025</div>
+          <h3 class="timeline-title">Farm-to-Table Dinner RSVP Deadline</h3>
+          <p class="timeline-description">Last chance to reserve your spot for Friday's exclusive farm-to-table dining experience featuring seasonal ingredients.</p>
+          <div class="timeline-meta">
+            <span class="timeline-badge">Deadline</span>
+            <span class="timeline-urgency">2 days remaining</span>
+          </div>
+        </div>
+      </article>
+      <article class="timeline-item">
+        <div class="timeline-marker">
+          <div class="timeline-dot"></div>
+          <div class="timeline-line"></div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-date">March 15, 2025</div>
+          <h3 class="timeline-title">Grand Teton Sunrise Hike</h3>
+          <p class="timeline-description">Guided 6-mile trail hike through Grand Teton National Park. Meet at 5:30 AM, transportation provided from Rexburg.</p>
+          <div class="timeline-meta">
+            <span class="timeline-badge">Outdoors</span>
+            <span class="timeline-points">+75 pts</span>
+          </div>
+        </div>
+      </article>
+      <article class="timeline-item">
+        <div class="timeline-marker">
+          <div class="timeline-dot"></div>
+          <div class="timeline-line"></div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-date">March 16, 2025</div>
+          <h3 class="timeline-title">Nature Photography Walk</h3>
+          <p class="timeline-description">Capture Rexburg's natural beauty with professional photographer Sarah Liu. Bring your camera or smartphone.</p>
+          <div class="timeline-meta">
+            <span class="timeline-badge">Outdoors</span>
+            <span class="timeline-points">+40 pts</span>
+          </div>
+        </div>
+      </article>
+      <article class="timeline-item">
+        <div class="timeline-marker">
+          <div class="timeline-dot"></div>
+        </div>
+        <div class="timeline-content">
+          <div class="timeline-date">March 20, 2025</div>
+          <h3 class="timeline-title">Spring Festival Event Day</h3>
+          <p class="timeline-description">The biggest outdoor celebration of the season kicks off at Porter Park. Check-in required for point credits.</p>
+          <div class="timeline-meta">
+            <span class="timeline-badge">Festival</span>
+            <span class="timeline-points">+150 pts for attendance</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="cta-container">
+    <div class="cta-content">
+      <div class="cta-text">
+        <h2 class="section-title">Level Up Your Experience</h2>
+        <p class="section-content">Every RSVP earns you points. Collect points to unlock new avatar customizations, badges, and exclusive event access. The more you participate, the more you grow your STOATs profile.</p>
+        <ul class="cta-benefits">
+          <li class="cta-benefit-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.12 2.12 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.12 2.12 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.12 2.12 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.12 2.12 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.12 2.12 0 0 0 1.597-1.16z"/></svg>
+            <span>Earn 40-100 points per RSVP</span>
+          </li>
+          <li class="cta-benefit-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g></svg>
+            <span>Customize your unique avatar</span>
+          </li>
+          <li class="cta-benefit-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978m7-7.318v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978M18 9h1.5a1 1 0 0 0 0-5H18M4 22h16"/><path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm0 0H4.5a1 1 0 0 1 0-5H6"/></g></svg>
+            <span>Unlock exclusive rewards & badges</span>
+          </li>
+        </ul>
+        <button class="btn btn-primary btn-lg cta-button">View Rewards & Customize Avatar</button>
+      </div>
+    </div>
+    <div class="cta-visual">
+      <div class="cta-card-stack">
+        <div class="cta-card cta-card-1">
+          <div class="cta-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.12 2.12 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.12 2.12 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.12 2.12 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.12 2.12 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.12 2.12 0 0 0 1.597-1.16z"/></svg>
+          </div>
+          <span class="cta-card-label">RSVP to Event</span>
+          <span class="cta-card-value">+50 pts</span>
+        </div>
+        <div class="cta-card cta-card-2">
+          <div class="cta-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m5 12l7-7l7 7m-7 7V5"/></svg>
+          </div>
+          <span class="cta-card-label">Collect Points</span>
+          <span class="cta-card-value">850 total</span>
+        </div>
+        <div class="cta-card cta-card-3">
+          <div class="cta-card-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g></svg>
+          </div>
+          <span class="cta-card-label">Level Up Avatar</span>
+          <span class="cta-card-value">Level 5</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.hero-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  animation: heroZoom 20s ease-out forwards;
+}
+
+@keyframes heroZoom {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-scrim);
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: var(--content-max-width);
+  padding: var(--spacing-2xl) var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-2xl);
+}
+
+.hero-text-container {
+  text-align: center;
+  animation: fadeSlideUp 0.8s ease-out;
+}
+
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-title {
+  color: var(--color-surface);
+  margin-bottom: var(--spacing-md);
+}
+
+.hero-subtitle {
+  color: var(--color-surface);
+  font-size: var(--font-size-xl);
+  opacity: 0.95;
+}
+
+.hero-search-wrapper {
+  width: 100%;
+  max-width: 48rem;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  animation: fadeSlideUp 0.8s ease-out 0.2s backwards;
+}
+
+.hero-search-bar {
+  position: relative;
+  width: 100%;
+  background: var(--color-surface);
+  border-radius: var(--border-radius-full);
+  padding: var(--spacing-md) var(--spacing-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero-search-bar:focus-within {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.hero-search-bar svg {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.hero-search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-on-surface);
+  font-size: var(--font-size-lg);
+}
+
+.hero-search-bar input::placeholder {
+  color: var(--color-on-surface-secondary);
+}
+
+.hero-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  justify-content: center;
+}
+
+.hero-category-chip {
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-full);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  background: var(--color-backplate);
+}
+
+.hero-category-chip:hover {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.hero-cta-card {
+  background: var(--color-surface);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  animation: fadeSlideUp 0.8s ease-out 0.4s backwards;
+}
+
+.hero-cta-content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.hero-cta-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  border-radius: var(--border-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hero-cta-icon svg {
+  color: var(--color-on-primary);
+}
+
+.hero-cta-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.hero-cta-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-on-surface-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.hero-cta-points {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-heading);
+  color: var(--color-primary);
+}
+
+@media (max-width: 767px) {
+  .hero {
+    min-height: 100vh;
+  }
+
+  .hero-content {
+    padding: var(--spacing-xl) var(--spacing-lg);
+    gap: var(--spacing-xl);
+  }
+
+  .hero-subtitle {
+    font-size: var(--font-size-lg);
+  }
+
+  .hero-search-bar {
+    padding: var(--spacing-sm) var(--spacing-lg);
+  }
+
+  .hero-search-bar input {
+    font-size: var(--font-size-base);
+  }
+
+  .hero-cta-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--spacing-lg);
+    gap: var(--spacing-md);
+  }
+
+  .hero-cta-content {
+    justify-content: center;
+  }
+
+  .hero-category-chip {
+    font-size: var(--font-size-xs);
+    padding: var(--spacing-xs) var(--spacing-md);
+  }
+}
+
+@media (max-width: 479px) {
+  .hero-cta-icon {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .hero-cta-points {
+    font-size: var(--font-size-lg);
+  }
+}
+
+.filters {
+  padding: var(--spacing-4xl) 0;
+  background: var(--color-surface);
+}
+
+.filters-container {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-xl);
+}
+
+.filters-container .section-title {
+  text-align: center;
+  margin-bottom: var(--spacing-3xl);
+}
+
+.filters-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--spacing-xl);
+}
+
+.filters-card {
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.filters-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.filters-card-icon {
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  border-radius: var(--border-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filters-card-icon svg {
+  color: var(--color-on-primary);
+}
+
+.filters-card-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-heading);
+  color: var(--color-on-surface);
+  margin: 0;
+}
+
+.filters-card-controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.filters-checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  cursor: pointer;
+  color: var(--color-on-surface);
+  font-size: var(--font-size-base);
+}
+
+.filters-checkbox-wrapper input[type="checkbox"] {
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+  accent-color: var(--color-primary);
+}
+
+.filters-date-input {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+  font-size: var(--font-size-base);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.filters-date-input:focus {
+  border-color: var(--color-primary);
+}
+
+.filters-date-separator {
+  text-align: center;
+  color: var(--color-on-surface-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.filters-range-label {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.filters-range-input {
+  width: 100%;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+.filters-range-value {
+  font-size: var(--font-size-sm);
+  color: var(--color-on-surface-secondary);
+}
+
+.filters-select {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.filters-select:focus {
+  border-color: var(--color-primary);
+}
+
+@media (max-width: 991px) {
+  .filters-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+}
+
+@media (max-width: 767px) {
+  .filters {
+    padding: var(--spacing-3xl) 0;
+  }
+
+  .filters-container {
+    padding: 0 var(--spacing-lg);
+  }
+
+  .filters-card {
+    padding: var(--spacing-lg);
+  }
+}
+
+.events {
+  padding: var(--spacing-4xl) 0;
+  background: var(--color-surface-elevated);
+}
+
+.events-container {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-xl);
+}
+
+.events-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-3xl);
+  gap: var(--spacing-lg);
+}
+
+.events-sort {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.events-sort-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-on-surface-secondary);
+  font-weight: var(--font-weight-medium);
+}
+
+.events-sort-select {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-md);
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+  font-size: var(--font-size-base);
+  cursor: pointer;
+  outline: none;
+}
+
+.events-bento {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--spacing-lg);
+}
+
+.events-card {
+  background: var(--color-surface);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.events-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.events-card-featured {
+  grid-column: span 7;
+  grid-row: span 2;
+}
+
+.events-card:nth-child(2) {
+  grid-column: span 5;
+}
+
+.events-card:nth-child(3) {
+  grid-column: span 5;
+}
+
+.events-card:nth-child(4) {
+  grid-column: span 4;
+}
+
+.events-card:nth-child(5) {
+  grid-column: span 3;
+}
+
+.events-card-image {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.events-card-featured .events-card-image {
+  height: 28rem;
+}
+
+.events-card-image:not(.events-card-featured .events-card-image) {
+  height: 12rem;
+}
+
+.events-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.events-card:hover .events-card-image img {
+  transform: scale(1.05);
+}
+
+.events-card-save {
+  position: absolute;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--color-surface);
+  border: none;
+  border-radius: var(--border-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.events-card-save:hover {
+  transform: scale(1.1);
+}
+
+.events-card-save svg {
+  color: var(--color-primary);
+}
+
+.events-card-badge {
+  position: absolute;
+  top: var(--spacing-md);
+  left: var(--spacing-md);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: var(--border-radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-heading);
+  z-index: 2;
+}
+
+.events-card-content {
+  padding: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  flex: 1;
+}
+
+.events-card-featured .events-card-content {
+  padding: var(--spacing-xl);
+  gap: var(--spacing-lg);
+}
+
+.events-card-category {
+  display: inline-block;
+  background: var(--color-surface-elevated);
+  color: var(--color-primary);
+  padding: 0.25rem var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  width: fit-content;
+}
+
+.events-card-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-heading);
+  color: var(--color-on-surface);
+  margin: 0;
+}
+
+.events-card-featured .events-card-title {
+  font-size: var(--font-size-2xl);
+}
+
+.events-card-description {
+  color: var(--color-on-surface-secondary);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+}
+
+.events-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.events-card-meta-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  color: var(--color-on-surface-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.events-card-meta-item svg {
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.events-card-rsvp {
+  margin-top: auto;
+  width: 100%;
+}
+
+@media (max-width: 991px) {
+  .events-bento {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .events-card-featured {
+    grid-column: span 6;
+    grid-row: span 1;
+  }
+
+  .events-card:nth-child(2),
+  .events-card:nth-child(3) {
+    grid-column: span 3;
+  }
+
+  .events-card:nth-child(4),
+  .events-card:nth-child(5) {
+    grid-column: span 3;
+  }
+}
+
+@media (max-width: 767px) {
+  .events {
+    padding: var(--spacing-3xl) 0;
+  }
+
+  .events-container {
+    padding: 0 var(--spacing-lg);
+  }
+
+  .events-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .events-bento {
+    grid-template-columns: 1fr;
+  }
+
+  .events-card-featured,
+  .events-card:nth-child(2),
+  .events-card:nth-child(3),
+  .events-card:nth-child(4),
+  .events-card:nth-child(5) {
+    grid-column: span 1;
+  }
+
+  .events-card-featured .events-card-image {
+    height: 16rem;
+  }
+}
+
+.showcase {
+  padding: var(--spacing-4xl) 0;
+  background: var(--color-surface);
+}
+
+.showcase-container {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-xl);
+}
+
+.showcase-container .section-title {
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.showcase-container .section-subtitle {
+  text-align: center;
+  margin-bottom: var(--spacing-3xl);
+}
+
+.showcase-layers {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4xl);
+}
+
+.showcase-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2xl);
+  background: var(--color-surface-elevated);
+  border-radius: var(--border-radius-xl);
+  overflow: visible;
+  transition: transform 0.4s ease;
+}
+
+.showcase-card:hover {
+  transform: translateX(1rem);
+}
+
+.showcase-card-outdoors {
+  padding-left: 0;
+}
+
+.showcase-card-arts {
+  padding-right: 0;
+  flex-direction: row-reverse;
+  transform: translateX(2rem);
+}
+
+.showcase-card-arts:hover {
+  transform: translateX(3rem);
+}
+
+.showcase-card-food {
+  padding-left: 0;
+  transform: translateX(1rem);
+}
+
+.showcase-card-food:hover {
+  transform: translateX(2rem);
+}
+
+.showcase-card-image {
+  position: relative;
+  width: 45%;
+  height: 24rem;
+  border-radius: var(--border-radius-xl);
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.showcase-card-arts .showcase-card-image {
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+
+.showcase-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.showcase-card:hover .showcase-card-image img {
+  transform: scale(1.08);
+}
+
+.showcase-card-content {
+  flex: 1;
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.showcase-card-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  border-radius: var(--border-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.showcase-card-icon svg {
+  color: var(--color-on-primary);
+}
+
+.showcase-card-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.showcase-card-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-heading);
+  color: var(--color-on-surface);
+  margin: 0;
+}
+
+.showcase-card-description {
+  color: var(--color-on-surface-secondary);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+}
+
+.showcase-card-count {
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+}
+
+.showcase-card-link {
+  color: var(--color-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  transition: gap 0.3s ease;
+}
+
+.showcase-card-link:hover {
+  gap: var(--spacing-sm);
+}
+
+@media (max-width: 991px) {
+  .showcase-card,
+  .showcase-card-arts,
+  .showcase-card-food {
+    flex-direction: column;
+    padding: 0;
+    transform: none;
+  }
+
+  .showcase-card:hover,
+  .showcase-card-arts:hover,
+  .showcase-card-food:hover {
+    transform: translateY(-0.5rem);
+  }
+
+  .showcase-card-image {
+    width: 100%;
+    height: 18rem;
+    border-radius: var(--border-radius-xl) var(--border-radius-xl) 0 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .showcase {
+    padding: var(--spacing-3xl) 0;
+  }
+
+  .showcase-container {
+    padding: 0 var(--spacing-lg);
+  }
+
+  .showcase-layers {
+    gap: var(--spacing-2xl);
+  }
+
+  .showcase-card-content {
+    padding: var(--spacing-lg);
+  }
+
+  .showcase-card-image {
+    height: 14rem;
+  }
+}
+
+.gallery {
+  padding: 0;
+  background: var(--color-surface-elevated);
+}
+
+.gallery-wrapper {
+  width: 100%;
+}
+
+.gallery-content {
+  max-width: 100%;
+  padding: var(--spacing-4xl) var(--spacing-xl);
+}
+
+.gallery-text {
+  max-width: var(--content-max-width);
+  margin: 0 auto var(--spacing-3xl);
+  text-align: center;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 20rem);
+  gap: var(--spacing-md);
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--border-radius-lg);
+  background: var(--color-surface);
+}
+
+.gallery-item-map {
+  grid-column: span 2;
+  grid-row: span 2;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+.gallery-item-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: var(--spacing-lg);
+  background: var(--color-scrim);
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-item-overlay {
+  transform: translateY(0);
+}
+
+.gallery-item-label {
+  color: var(--color-surface);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+}
+
+.gallery-map-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-md);
+  color: var(--color-on-primary);
+  position: relative;
+}
+
+.gallery-map-placeholder svg {
+  color: var(--color-on-primary);
+  opacity: 0.9;
+}
+
+.gallery-map-placeholder span {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-heading);
+}
+
+.gallery-map-pin {
+  position: absolute;
+  top: var(--spacing-lg);
+  right: var(--spacing-lg);
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--border-radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+@media (max-width: 991px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 16rem);
+  }
+
+  .gallery-item-map {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+}
+
+@media (max-width: 767px) {
+  .gallery-content {
+    padding: var(--spacing-3xl) var(--spacing-lg);
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 14rem);
+    gap: var(--spacing-sm);
+  }
+
+  .gallery-item-map {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
+.timeline {
+  padding: var(--spacing-4xl) 0;
+  background: var(--color-surface);
+}
+
+.timeline-container {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-xl);
+}
+
+.timeline-container .section-title {
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.timeline-container .section-subtitle {
+  text-align: center;
+  margin-bottom: var(--spacing-3xl);
+}
+
+.timeline-track {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.timeline-item {
+  display: flex;
+  gap: var(--spacing-xl);
+  position: relative;
+}
+
+.timeline-marker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.timeline-dot {
+  width: 1rem;
+  height: 1rem;
+  background: var(--color-primary);
+  border: 3px solid var(--color-surface-elevated);
+  border-radius: var(--border-radius-full);
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.timeline-line {
+  width: 2px;
+  flex: 1;
+  background: var(--color-border);
+  margin-top: var(--spacing-xs);
+}
+
+.timeline-item:last-child .timeline-line {
+  display: none;
+}
+
+.timeline-content {
+  flex: 1;
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-content:hover {
+  transform: translateX(0.5rem);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-date {
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.timeline-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-heading);
+  color: var(--color-on-surface);
+  margin: 0;
+}
+
+.timeline-description {
+  color: var(--color-on-surface-secondary);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+}
+
+.timeline-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+.timeline-badge {
+  background: var(--color-surface);
+  color: var(--color-primary);
+  padding: 0.25rem var(--spacing-sm);
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.timeline-points {
+  color: var(--color-accent);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+.timeline-urgency {
+  color: var(--color-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+}
+
+@media (max-width: 767px) {
+  .timeline {
+    padding: var(--spacing-3xl) 0;
+  }
+
+  .timeline-container {
+    padding: 0 var(--spacing-lg);
+  }
+
+  .timeline-item {
+    gap: var(--spacing-md);
+  }
+
+  .timeline-content {
+    padding: var(--spacing-lg);
+  }
+}
+
+.cta {
+  padding: var(--spacing-4xl) 0;
+  background: linear-gradient(135deg, var(--color-surface-elevated) 0%, var(--color-surface) 100%);
+}
+
+.cta-container {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4xl);
+}
+
+.cta-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.cta-benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.cta-benefit-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  color: var(--color-on-surface);
+  font-size: var(--font-size-base);
+}
+
+.cta-benefit-item svg {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.cta-button {
+  align-self: flex-start;
+  margin-top: var(--spacing-md);
+}
+
+.cta-visual {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cta-card-stack {
+  position: relative;
+  width: 100%;
+  max-width: 28rem;
+  height: 28rem;
+}
+
+.cta-card {
+  position: absolute;
+  width: 100%;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-xl);
+  padding: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.cta-card-1 {
+  top: 0;
+  left: 0;
+  z-index: 3;
+  transform: rotate(-3deg);
+}
+
+.cta-card-1:hover {
+  transform: rotate(-3deg) translateY(-0.5rem);
+}
+
+.cta-card-2 {
+  top: 6rem;
+  left: 2rem;
+  z-index: 2;
+  transform: rotate(2deg);
+}
+
+.cta-card-2:hover {
+  transform: rotate(2deg) translateY(-0.5rem);
+}
+
+.cta-card-3 {
+  top: 12rem;
+  left: 0;
+  z-index: 1;
+  transform: rotate(-2deg);
+}
+
+.cta-card-3:hover {
+  transform: rotate(-2deg) translateY(-0.5rem);
+}
+
+.cta-card-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  border-radius: var(--border-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cta-card-icon svg {
+  color: var(--color-on-primary);
+}
+
+.cta-card-label {
+  font-size: var(--font-size-sm);
+  color: var(--color-on-surface-secondary);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cta-card-value {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-heading);
+  color: var(--color-primary);
+}
+
+@media (max-width: 991px) {
+  .cta-container {
+    flex-direction: column;
+    gap: var(--spacing-3xl);
+  }
+
+  .cta-button {
+    align-self: stretch;
+  }
+
+  .cta-card-stack {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .cta {
+    padding: var(--spacing-3xl) 0;
+  }
+
+  .cta-container {
+    padding: 0 var(--spacing-lg);
+  }
+
+  .cta-card-stack {
+    height: 24rem;
+  }
+
+  .cta-card {
+    padding: var(--spacing-lg);
+  }
+
+  .cta-card-1 {
+    top: 0;
+  }
+
+  .cta-card-2 {
+    top: 4rem;
+  }
+
+  .cta-card-3 {
+    top: 8rem;
+  }
+}
+</style>
+<script defer data-name="hero-video-zoom">
+const heroVideo = document.querySelector('.hero-video');
+if (heroVideo) {
+  heroVideo.addEventListener('ended', function() {
+    this.currentTime = 0;
+    this.play();
+  });
+}
+</script>
+
+<script defer data-name="filters-range-update">
+const rangeInputs = document.querySelectorAll('.filters-range-input');
+rangeInputs.forEach(input => {
+  const valueSpan = input.parentElement.querySelector('.filters-range-value');
+  if (valueSpan) {
+    input.addEventListener('input', function() {
+      valueSpan.textContent = `${this.value} miles from Rexburg`;
+    });
+  }
+});
+</script>
+
+<script defer data-name="gallery-map-interaction">
+const mapItem = document.querySelector('.gallery-item-map');
+if (mapItem) {
+  mapItem.addEventListener('click', function() {
+    alert('Interactive map feature would open here - showing all event locations across Rexburg with filtering and navigation options.');
+  });
+  mapItem.style.cursor = 'pointer';
+}
+</script><footer class="footer">
+  <div class="footer-main">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" class="footer-logo-icon"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M8 5h13m-8 7h8m-8 7h8M3 10a2 2 0 0 0 2 2h3"/><path d="M3 5v12a2 2 0 0 0 2 2h3"/></g></svg>
+          <span class="footer-brand-name">STOATs</span>
+        </div>
+        <p class="footer-tagline">Discover adventure in Rexburg, Idaho. Explore events, collect points, and level up your outdoor experience.</p>
+        <div class="footer-social">
+          <a href="#" class="footer-social-link" aria-label="Follow us on Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="footer-social-link" aria-label="Follow us on Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6c2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4c-.9-4.2 4-6.6 7-3.8c1.1 0 3-1.2 3-1.2"/></svg>
+          </a>
+          <a href="#" class="footer-social-link" aria-label="Follow us on Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8A4 4 0 0 1 16 11.37m1.5-4.87h.01"/></g></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-links-wrapper">
+        <div class="footer-column">
+          <h3 class="footer-column-title">Explore</h3>
+          <ul class="footer-link-list">
+            <li class="footer-link-item"><a href="#" class="footer-link">Events & Activities</a></li>
+            <li class="footer-link-item"><a href="#" class="footer-link">Categories</a></li>
+            <li class="footer-link-item"><a href="#" class="footer-link">Leaderboard</a></li>
+            <li class="footer-link-item"><a href="#" class="footer-link">Avatar Builder</a></li>
+            <li class="footer-link-item"><a href="#" class="footer-link">My RSVPs</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-column-title">Community</h3>
+          <ul class="footer-link-list">
+            <li class="footer-link-item"><a href="#" class="footer-link">About Us</a></li>
+            <li class="footer-link-item"><a href="#" class="footer-link">How It Works</a></li>
+            <li class="footer-link-item"><a href="#" class="footer-link">Partner With Us</a></li>
+            <li class="footer-link-item"><a href="#" class="footer-link">Submit Event</a></li>
+            <li class="footer-link-item"><a href="#" class="footer-link">Blog</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3 class="footer-column-title">Support</h3>
+          <ul class="footer-link-list">
+            <li class="footer-link-item"><a href="#" class="footer-link">Help Center</a></li>
+            <li class="footer-link-item"><a href="#" class="footer-link">Contact Us</a></li>
+            <li class="footer-link-item"><a href="#" class="footer-link">FAQs</a></li>
+            <li class="footer-link-item"><a href="#" class="footer-link">Privacy Policy</a></li>
+            <li class="footer-link-item"><a href="#" class="footer-link">Terms of Service</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column footer-contact">
+          <h3 class="footer-column-title">Get In Touch</h3>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="footer-contact-icon"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0zm.894.211v15M9 3.236v15"/></svg>
+              <span class="footer-contact-text">Rexburg, Idaho</span>
+            </div>
+            <div class="footer-contact-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="footer-contact-icon"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="m22 7l-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect width="20" height="16" x="2" y="4" rx="2"/></g></svg>
+              <a href="mailto:hello@STOATs.com" class="footer-contact-link">hello@STOATs.com</a>
+            </div>
+            <div class="footer-contact-item">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" class="footer-contact-icon"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233a14 14 0 0 0 6.392 6.384"/></svg>
+              <a href="tel:+12085551234" class="footer-contact-link">(208) 555-1234</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-content">
+      <p class="footer-copyright">&copy; 2025 STOATs. All rights reserved.</p>
+      <button class="footer-scroll-top" id="scrollTopBtn" aria-label="Scroll to top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m18 15l-6-6l-6 6"/></svg>
+      </button>
+    </div>
+  </div>
+</footer>
+<style>
+.footer {
+  background: var(--color-surface-elevated);
+  color: var(--color-on-surface);
+  position: relative;
+  overflow: hidden;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 50%, var(--color-accent) 100%);
+  z-index: 1;
+}
+
+.footer-main {
+  padding-top: var(--spacing-4xl);
+  padding-bottom: var(--spacing-3xl);
+  padding-left: var(--spacing-xl);
+  padding-right: var(--spacing-xl);
+}
+
+.footer-content {
+  max-width: var(--content-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  gap: var(--spacing-3xl);
+}
+
+.footer-brand {
+  flex: 0 0 320px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.footer-logo-icon {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.footer-brand-name {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-heading);
+  color: var(--color-on-surface);
+  font-family: var(--font-family-heading);
+  letter-spacing: -0.02em;
+}
+
+.footer-tagline {
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  color: var(--color-on-surface-secondary);
+  margin: 0;
+}
+
+.footer-social {
+  display: flex;
+  gap: var(--spacing-sm);
+  align-items: center;
+}
+
+.footer-social-link {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface);
+  color: var(--color-on-surface);
+  border-radius: var(--border-radius-md);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid var(--color-border);
+}
+
+.footer-social-link:hover {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-3px);
+}
+
+.footer-social-link:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.footer-links-wrapper {
+  flex: 1;
+  display: flex;
+  gap: var(--spacing-2xl);
+  justify-content: space-between;
+}
+
+.footer-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.footer-column-title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-heading);
+  color: var(--color-on-surface);
+  margin: 0;
+  font-family: var(--font-family-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer-link-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.footer-link-item {
+  margin: 0;
+}
+
+.footer-link {
+  color: var(--color-on-surface-secondary);
+  text-decoration: none;
+  font-size: var(--font-size-sm);
+  transition: color 0.3s ease;
+  display: inline-block;
+  position: relative;
+}
+
+.footer-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-primary);
+  transition: width 0.3s ease;
+}
+
+.footer-link:hover {
+  color: var(--color-primary);
+}
+
+.footer-link:hover::after {
+  width: 100%;
+}
+
+.footer-link:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-sm);
+}
+
+.footer-contact {
+  flex: 1.2;
+}
+
+.footer-contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.footer-contact-icon {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.footer-contact-text {
+  font-size: var(--font-size-sm);
+  color: var(--color-on-surface-secondary);
+}
+
+.footer-contact-link {
+  font-size: var(--font-size-sm);
+  color: var(--color-on-surface-secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-contact-link:hover {
+  color: var(--color-primary);
+}
+
+.footer-contact-link:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: var(--border-radius-sm);
+}
+
+.footer-bottom {
+  background: var(--color-surface);
+  padding: var(--spacing-lg) var(--spacing-xl);
+  border-top: 1px solid var(--color-border);
+}
+
+.footer-bottom-content {
+  max-width: var(--content-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+}
+
+.footer-copyright {
+  font-size: var(--font-size-sm);
+  color: var(--color-on-surface-secondary);
+  margin: 0;
+}
+
+.footer-scroll-top {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border: none;
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.footer-scroll-top:hover {
+  background: var(--color-secondary);
+  transform: translateY(-3px);
+}
+
+.footer-scroll-top:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.footer-scroll-top:active {
+  transform: translateY(-1px);
+}
+
+@media (max-width: 991px) {
+  .footer-main {
+    padding-top: var(--spacing-3xl);
+    padding-bottom: var(--spacing-2xl);
+  }
+
+  .footer-content {
+    flex-direction: column;
+    gap: var(--spacing-2xl);
+  }
+
+  .footer-brand {
+    flex: 1;
+  }
+
+  .footer-links-wrapper {
+    flex-wrap: wrap;
+    gap: var(--spacing-xl);
+  }
+
+  .footer-column {
+    flex: 0 0 calc(50% - var(--spacing-lg));
+  }
+
+  .footer-contact {
+    flex: 0 0 calc(50% - var(--spacing-lg));
+  }
+}
+
+@media (max-width: 767px) {
+  .footer-main {
+    padding-left: var(--spacing-md);
+    padding-right: var(--spacing-md);
+    padding-top: var(--spacing-2xl);
+    padding-bottom: var(--spacing-xl);
+  }
+
+  .footer-content {
+    gap: var(--spacing-xl);
+  }
+
+  .footer-links-wrapper {
+    flex-direction: column;
+    gap: var(--spacing-xl);
+  }
+
+  .footer-column {
+    flex: 1;
+  }
+
+  .footer-contact {
+    flex: 1;
+  }
+
+  .footer-bottom {
+    padding: var(--spacing-md);
+  }
+
+  .footer-bottom-content {
+    flex-direction: column;
+    gap: var(--spacing-md);
+    text-align: center;
+  }
+
+  .footer-copyright {
+    order: 2;
+  }
+
+  .footer-scroll-top {
+    order: 1;
+  }
+}
+
+@media (max-width: 479px) {
+  .footer-brand {
+    flex: 1;
+  }
+
+  .footer-brand-name {
+    font-size: var(--font-size-lg);
+  }
+
+  .footer-social {
+    justify-content: flex-start;
+  }
+
+  .footer-column-title {
+    font-size: var(--font-size-sm);
+  }
+
+  .footer-link {
+    font-size: var(--font-size-xs);
+  }
+
+  .footer-contact-text,
+  .footer-contact-link {
+    font-size: var(--font-size-xs);
+  }
+}
+</style>
+<script defer data-name="footer-scroll-top">
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+if (scrollTopBtn) {
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+}
+</script>
+
+</body>
+</html>
